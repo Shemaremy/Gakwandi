@@ -2,7 +2,7 @@ import React from "react";
 import '../App.css';
 import './Mods.css';
 
-function Part8() {
+function Part9() {
   return (
     <>
       <div className="footer-top">
@@ -83,4 +83,4 @@ function Part8() {
   );
 }
 
-export default Part8;
+export default Part9;
