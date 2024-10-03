@@ -1,3 +1,11 @@
+/**
+* Template Name: Gp
+* Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+* Updated: Aug 15 2024 with Bootstrap v5.3.3
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
 (function() {
   "use strict";
 
@@ -65,7 +73,7 @@
   /**
    * Scroll top button
    */
-  /*let scrollTop = document.querySelector('.scroll-top');
+  let scrollTop = document.querySelector('.scroll-top');
 
   function toggleScrollTop() {
     if (scrollTop) {
@@ -82,7 +90,6 @@
 
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
-  */
 
   /**
    * Animation on scroll function and init
