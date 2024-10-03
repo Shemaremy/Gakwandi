@@ -1,6 +1,7 @@
 import React from "react";
 import '../App.css';
 import './Mods.css';
+import '../../public/assets/js/main.js';
 
 function Part6() {
   return (

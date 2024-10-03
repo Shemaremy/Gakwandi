@@ -1,3 +1,4 @@
+import React from 'react'
 import './App.css'
 import Part1 from './Components/Part1'
 import Part2 from './Components/Part2'
@@ -8,6 +9,7 @@ import Part6 from './Components/Part6'
 import Part7 from './Components/Part7'
 import Part8 from './Components/Part8'
 import Part9 from './Components/Part9'
+import Preloader from './Components/Part10'
 
 function App() {
 
