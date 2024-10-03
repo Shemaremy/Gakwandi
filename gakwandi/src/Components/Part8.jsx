@@ -5,14 +5,12 @@ import './Mods.css';
 function Part8() {
 
   return (
-    // Contact Section
     <section id="contact" className="contact section">
 
-      {/* Section Title */}
       <div className="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
         <p>Contact Us</p>
-      </div> {/* End Section Title */}
+      </div>
 
       <div className="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -25,7 +23,7 @@ function Part8() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
-        </div> {/* End Google Maps */}
+        </div>
 
         <div className="row gy-4">
 
@@ -36,7 +34,7 @@ function Part8() {
                 <h3>Address</h3>
                 <p>A108 Adam Street, New York, NY 535022</p>
               </div>
-            </div> {/* End Info Item */}
+            </div>
 
             <div className="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
               <i className="bi bi-telephone flex-shrink-0"></i>
@@ -44,7 +42,7 @@ function Part8() {
                 <h3>Call Us</h3>
                 <p>+1 5589 55488 55</p>
               </div>
-            </div> {/* End Info Item */}
+            </div>
 
             <div className="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
               <i className="bi bi-envelope flex-shrink-0"></i>
@@ -52,7 +50,7 @@ function Part8() {
                 <h3>Email Us</h3>
                 <p>info@example.com</p>
               </div>
-            </div> {/* End Info Item */}
+            </div>
           </div>
 
           <div className="col-lg-8">
@@ -85,13 +83,13 @@ function Part8() {
 
               </div>
             </form>
-          </div> {/* End Contact Form */}
+          </div>
 
         </div>
 
       </div>
 
-    </section> // End Contact Section
+    </section>
   );
 }
 

@@ -1,3 +1,30 @@
+.landing-container {
+    width: 70%;
+    padding-top: 50px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        padding-top: 20px;
+    }
+}
+
+.landing-container > p {
+    font-size: 18px;
+    
+    @media (max-width: 768px) {
+        font-size: 15px;
+        margin-top: 30px;
+    }
+}
+
+.icon-box > h3 > a {
+    font-size: 14px;
+}
+
+.service-item > a > h3 {
+    font-size: 18px !important;
+}
+
 .portfolio .portfolio-item {
     cursor: pointer;
 }

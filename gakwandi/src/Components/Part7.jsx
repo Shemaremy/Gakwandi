@@ -9,7 +9,6 @@ function Part7() {
   }, []);
   
   return (
-    // Stats Section
     <section id="stats" className="stats section">
 
       <div className="container" data-aos="fade-up" data-aos-delay="100">
