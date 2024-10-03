@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+import PureCounter from "@srexi/purecounterjs";
 import '../App.css';
 import './Mods.css';
 
 function Part7() {
+  useEffect(() => {
+    new PureCounter();  // Initialize PureCounter after the component mounts
+  }, []);
+  
   return (
     // Stats Section
     <section id="stats" className="stats section">

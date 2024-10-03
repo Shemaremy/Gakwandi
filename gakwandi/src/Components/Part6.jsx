@@ -1,9 +1,116 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../App.css';
 import './Mods.css';
-import '../../public/assets/js/main.js';
+import Isotope from 'isotope-layout';
+import imagesLoaded from 'imagesloaded';
+import 'swiper/swiper-bundle.css';
+import GLightbox from 'glightbox';
+import 'glightbox/dist/css/glightbox.min.css';
+
+
+
+
+function initSwiperWithCustomPagination(swiperElement, config) {
+  config.pagination = {
+    el: swiperElement.querySelector('.swiper-pagination'),
+    clickable: true
+  };
+  new Swiper(swiperElement, config);
+}
+
+
 
 function Part6() {
+
+
+
+
+
+
+
+
+
+
+
+
+// -------------- Portfolio products animations and filtering ---------------------------------------------------
+// -------------- Portfolio products animations and filtering ---------------------------------------------------
+// -------------- Portfolio products animations and filtering ---------------------------------------------------
+
+
+  useEffect(() => {
+    document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
+      let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
+      let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
+      let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
+
+      let initIsotope;
+      imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
+        initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
+          itemSelector: '.isotope-item',
+          layoutMode: layout,
+          filter: filter,
+          sortBy: sort
+        });
+      });
+
+      isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
+        filters.addEventListener('click', function() {
+          isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
+          this.classList.add('filter-active');
+          initIsotope.arrange({
+            filter: this.getAttribute('data-filter')
+          });
+        });
+      });
+    });
+  }, []);
+
+
+  useEffect(() => {
+    function initSwiper() {
+      document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
+        let config = JSON.parse(
+          swiperElement.querySelector(".swiper-config").innerHTML.trim()
+        );
+
+        if (swiperElement.classList.contains("swiper-tab")) {
+          initSwiperWithCustomPagination(swiperElement, config);
+        } else {
+          new Swiper(swiperElement, config);
+        }
+      });
+    }
+
+    // Call initSwiper when the component mounts
+    initSwiper();
+  }, []);
+
+
+  useEffect(() => {
+    const glightbox = GLightbox({
+      selector: '.glightbox'
+    });
+  }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     // Portfolio Section
     <section id="portfolio" className="portfolio section">
