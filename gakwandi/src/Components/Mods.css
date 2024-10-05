@@ -1,3 +1,9 @@
+.hamburger_container {
+    display: none;
+}
+
+
+
 .landing-container {
     width: 70%;
     padding-top: 50px;
@@ -27,4 +33,85 @@
 
 .portfolio .portfolio-item {
     cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================================ RESPONSIVE =========================================================== */
+/* ================================ RESPONSIVE =========================================================== */
+/* ================================ RESPONSIVE =========================================================== */
+/* ================================ RESPONSIVE =========================================================== */
+
+@media (max-width: 1199px) {
+    .hamburger_container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        z-index: 100;
+    }
+
+    .hamburger_container.is-active {
+        height: 50px;
+        width: 90%;
+        margin: 0 auto;
+    }
+    
+    .hamburger {
+        position: relative;
+        display: block;
+        width: 35px;
+        cursor: pointer;
+        appearance: none;
+        background: none;
+        outline: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    
+    
+    .hamburger .bar, .hamburger:after, .hamburger:before {
+        content: '';
+        display: block;
+        width: 24px;
+        height: 2px;
+        background-color: #FFF;
+        margin: 6px 0px;
+        transition: 0.4s;
+        z-index: 999;
+        overflow-x: hidden;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #00000000;
+        border-radius: 5px;
+    }    
+    
+    
+
+    .hamburger.is-active:before {
+        transform: rotate(-45deg) translate(-7px, 5px);
+    }
+
+    .hamburger.is-active:after {
+        transform: rotate(45deg) translate(-6px, -4px);
+    }
+
+    .hamburger.is-active .bar {
+        opacity: 0;
+    }
+
+    .Mobile-panel.is-active {
+        display: block;
+    } 
 }

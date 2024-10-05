@@ -11,13 +11,13 @@ function Part9() {
 
             <div className="col-lg-4 col-md-6 footer-about">
               <a href="index.html" className="logo d-flex align-items-center">
-                <span className="sitename">Gz</span>
+                <span className="sitename">Gakwandi Zacharie.</span>
               </a>
               <div className="footer-contact pt-3">
-                <p>A108 Adam Street</p>
-                <p>New York, NY 535022</p>
-                <p className="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                <p><strong>Email:</strong> <span>info@example.com</span></p>
+                <p>Avenue de l'OUA,</p>
+                <p>Bujumbura, Burundi</p>
+                <p className="mt-3"><strong>Phone:</strong> <span>+257 711 268 65</span></p>
+                <p><strong>Email:</strong> <span>gakwandishops@gmail.com</span></p>
               </div>
               <div className="social-links d-flex mt-4">
                 <a href="#"><i className="bi bi-twitter-x"></i></a>
