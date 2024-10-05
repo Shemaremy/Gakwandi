@@ -1,8 +1,54 @@
-import React from "react";
+import React, {useState} from "react";
 import '../App.css';
 import './Mods.css';
 
 function Part9() {
+
+
+
+
+  const [Email, setEmail] = useState('');
+
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState(false);
+
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    setErrorMessage('');
+    setSuccessMessage(false);
+    setLoading(true);
+    async function sendEmail() {
+        try {
+          const response = await fetch('https://gakwandi-project.glitch.me/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ Email }),
+          });
+      
+          const data = await response.json();
+          setLoading(false);
+      
+          if (response.ok) {
+            setSuccessMessage(true);
+            setTimeout(() => window.location.reload(), 2000);
+          } else {
+            setErrorMessage(data.message || 'Subscription failed.');
+            console.error('Subscription failed:', data.message);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          setErrorMessage('Something went wrong. Please try again later.');
+          setLoading(false);
+          window.location.reload();
+        }
+    }
+    sendEmail();
+  };
+
+
+
   return (
     <>
       <div className="footer-top">
@@ -23,7 +69,9 @@ function Part9() {
                 <a href="#"><i className="bi bi-twitter-x"></i></a>
                 <a href="#"><i className="bi bi-facebook"></i></a>
                 <a href="#"><i className="bi bi-instagram"></i></a>
-                <a href="#"><i className="bi bi-linkedin"></i></a>
+                <a href="https://wa.me/25771126865?text=Hello%2C%20I%20would%20like%20to%20get%20in%20touch%20with%20you." target="_blank" rel="noopener noreferrer">
+                  <i className="bi bi-whatsapp"></i>
+                </a>
               </div>
             </div>
 
@@ -51,14 +99,19 @@ function Part9() {
             <div className="col-lg-4 col-md-12 footer-newsletter">
               <h4>Our Newsletter</h4>
               <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-              <form action="forms/newsletter.php" method="post" className="php-email-form">
+              <form onSubmit={handleSubscribe} className="php-email-form">
                 <div className="newsletter-form">
-                  <input type="email" name="email" />
+                  <input type="email" placeholder="Email address"
+                    name="Email" value={Email} 
+                    onChange={(e) => setEmail(e.target.value)}
+                    maxLength={80} 
+                    required 
+                  />
                   <input type="submit" value="Subscribe" />
                 </div>
-                <div className="loading">Loading</div>
-                <div className="error-message"></div>
-                <div className="sent-message">Your subscription request has been sent. Thank you!</div>
+                {loading && <div className="loading d-block">Loading...</div>}
+                {errorMessage && <div className="error-message d-block">{errorMessage}</div>}
+                {successMessage && <div className="sent-message d-block">Your subscription request has been sent. Thank you!</div>}
               </form>
             </div>
 

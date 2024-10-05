@@ -1,8 +1,74 @@
-import React from "react";
+import React, {useState} from "react";
 import '../App.css';
 import './Mods.css';
 
 function Part8() {
+
+  const [Name, setName] = useState('');
+  const [Email, setEmail] = useState('');
+  const [Subject, setSubject] = useState('');
+  const [Message, setMessage] = useState('');
+
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState(false);
+
+
+
+
+  const handleEmailSend = (e) => {
+      e.preventDefault();
+      setErrorMessage('');
+      setSuccessMessage(false);
+      setLoading(true);
+      async function sendEmail() {
+          try {
+            const response = await fetch('https://gakwandi-project.glitch.me/submit', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ Name, Email, Subject, Message}),
+            });
+        
+            const data = await response.json();
+            setLoading(false);
+        
+            if (response.ok) {
+              setSuccessMessage(true);
+              setTimeout(() => window.location.reload(), 2000);
+            } else {
+              setErrorMessage(data.message || 'Form submission failed.');
+              console.error('Form submission failed:', data.message);
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            setErrorMessage('Something went wrong. Please try again later.');
+            setLoading(false);
+            window.location.reload();
+          }
+      }
+      sendEmail();
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <section id="contact" className="contact section">
@@ -53,33 +119,65 @@ function Part8() {
           </div>
 
           <div className="col-lg-8">
-            <form action="forms/contact.php" method="post" className="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <form onSubmit={handleEmailSend} className="php-email-form" data-aos="fade-up" data-aos-delay="200">
               <div className="row gy-4">
 
                 <div className="col-md-6">
-                  <input type="text" name="name" className="form-control" placeholder="Your Name" required />
+                  <input className="form-control" 
+                    type="text" 
+                    name="Name" value={Name} 
+                    onChange={(e) => setName(e.target.value)}
+                    maxLength={20} 
+                    placeholder="Your Name" 
+                    required 
+                  />
                 </div>
 
                 <div className="col-md-6">
-                  <input type="email" className="form-control" name="email" placeholder="Your Email" required />
+                  <input className="form-control" 
+                    type="email" 
+                    name="Email" value={Email} 
+                    onChange={(e) => setEmail(e.target.value)}
+                    maxLength={80} 
+                    placeholder="Your Email" 
+                    required 
+                  />
                 </div>
 
                 <div className="col-md-12">
-                  <input type="text" className="form-control" name="subject" placeholder="Subject" required />
+                  <input className="form-control"
+                    type="text" 
+                    name="Subject" value={Subject} 
+                    onChange={(e) => setSubject(e.target.value)}
+                    maxLength={50}
+                    placeholder="Subject" 
+                    required 
+                  />
                 </div>
 
                 <div className="col-md-12">
-                  <textarea className="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                  <textarea className="form-control" 
+                    name="Message" 
+                    value={Message} 
+                    onChange={(e) => setMessage(e.target.value)}
+                    maxLength={1000} 
+                    rows="6" 
+                    placeholder="Message" 
+                    required>
+                  </textarea>
                 </div>
 
                 <div className="col-md-12 text-center">
-                  <div className="loading">Loading</div>
-                  <div className="error-message"></div>
-                  <div className="sent-message">Your message has been sent. Thank you!</div>
+                  {loading && <div className="loading d-block">Loading...</div>}
+                  {errorMessage && <div className="error-message d-block">{errorMessage}</div>}
+                  {successMessage && <div className="sent-message d-block">Your message has been sent. Thank you!</div>}
 
-                  <button type="submit">Send Message</button>
+                  {!loading && (
+                    <button type="submit">
+                      Send Message
+                    </button>
+                  )}
                 </div>
-
               </div>
             </form>
           </div>
