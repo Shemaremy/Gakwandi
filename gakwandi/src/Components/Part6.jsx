@@ -6,6 +6,7 @@ import imagesLoaded from 'imagesloaded';
 import 'swiper/swiper-bundle.css';
 import GLightbox from 'glightbox';
 import 'glightbox/dist/css/glightbox.min.css';
+import { renderToString } from 'react-dom/server';
 
 
 
@@ -115,62 +116,93 @@ function Part6() {
 // ---------------- Array of portfolio items -----------------------------------------------------------
 // ---------------- Array of portfolio items ----------------------------------------------------------- 
 
+
+
+
+
+const PortfolioDescription = ({ imageUrl }) => {
+  const handleShopNow = () => {
+    const phoneNumber = "+25771126865";
+    const message = `How much is this sir? ${imageUrl}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  return (
+    <div>
+      <button onClick={handleShopNow}>Shop now</button>  {/* When rendered to string, onclick doesnt work cause component is rendered as a string */}
+    </div>
+  );
+};
+
+
+
 const portfolioItems = [
   {
     title: "App 1",
     category: "filter-app",
     image: "assets/img/masonry-portfolio/masonry-portfolio-1.jpg",
-    gallery: "portfolio-gallery-app"
+    gallery: "portfolio-gallery-app",
+    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" />)
   },
   {
     title: "Product 1",
     category: "filter-product",
     image: "assets/img/masonry-portfolio/masonry-portfolio-2.jpg",
-    gallery: "portfolio-gallery-product"
+    gallery: "portfolio-gallery-product",
+    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" />)
   },
   {
     title: "Branding 1",
     category: "filter-branding",
     image: "assets/img/masonry-portfolio/masonry-portfolio-3.jpg",
-    gallery: "portfolio-gallery-branding"
+    gallery: "portfolio-gallery-branding",
+    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" />)
   },
   {
     title: "App 2",
     category: "filter-app",
     image: "assets/img/masonry-portfolio/masonry-portfolio-4.jpg",
-    gallery: "portfolio-gallery-app"
+    gallery: "portfolio-gallery-app",
+    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" />)
   },
   {
     title: "Product 2",
     category: "filter-product",
     image: "assets/img/masonry-portfolio/masonry-portfolio-5.jpg",
-    gallery: "portfolio-gallery-product"
+    gallery: "portfolio-gallery-product",
+    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" />)
   },
   {
     title: "Branding 2",
     category: "filter-branding",
     image: "assets/img/masonry-portfolio/masonry-portfolio-6.jpg",
-    gallery: "portfolio-gallery-branding"
+    gallery: "portfolio-gallery-branding",
+    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" />)
   },
   {
     title: "App 3",
     category: "filter-app",
     image: "assets/img/masonry-portfolio/masonry-portfolio-7.jpg",
-    gallery: "portfolio-gallery-app"
+    gallery: "portfolio-gallery-app",
+    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" />)
   },
   {
     title: "Product 3",
     category: "filter-product",
     image: "assets/img/masonry-portfolio/masonry-portfolio-8.jpg",
-    gallery: "portfolio-gallery-product"
+    gallery: "portfolio-gallery-product",
+    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" />)
   },
   {
     title: "Branding 3",
     category: "filter-branding",
     image: "assets/img/masonry-portfolio/masonry-portfolio-9.jpg",
-    gallery: "portfolio-gallery-branding"
+    gallery: "portfolio-gallery-branding",
+    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" />)
   }
 ];
+
 
 
 
@@ -213,7 +245,7 @@ const portfolioItems = [
                   <div className="portfolio-info">
                     <h4>{item.title}</h4>
                     <p>Lorem ipsum, dolor sit</p>
-                    <a href={item.image} title={item.title} data-gallery={item.gallery} className="glightbox preview-link">
+                    <a href={item.image} title={item.title} data-gallery={item.gallery} data-description={item.description} className="glightbox preview-link">
                       <i className="bi bi-zoom-in"></i>
                     </a>
                     <a href="portfolio-details.html" title="More Details" className="details-link">
