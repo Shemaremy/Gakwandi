@@ -1,9 +1,16 @@
 import React, {useEffect} from "react";
+import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import './Mods.css';
 //import '../../public/assets/js/main.js'
 
 function Part1() {
+
+  const navigate = useNavigate();
+  
+  const goToAdmin = () => {
+    navigate('/admin');
+  };
 
 
   // When the burger is clicked, this is called
@@ -107,7 +114,7 @@ function Part1() {
         <div></div>
       </nav>
 
-      <a className="btn-getstarted" href="index.html#about">Get Started</a>
+      <a className="btn-getstarted" onClick={goToAdmin}>Admin</a>
     </div>
   );
 }

@@ -1,0 +1,90 @@
+body.active-modal {
+    overflow-y: hidden;
+}
+
+.btn-modal {
+    padding: 10px 20px;
+    display: block;
+    margin: 100px auto 0;
+    font-size: 18px;
+}
+
+.dialog-modal, .dialog-overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+.dialog-overlay {
+    background: rgba(49,49,49,0.8);
+}
+.dialog-content {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #f1f1f1;
+    padding: 50px 50px;
+    border-radius: 5px;
+    max-width: 600px;
+    min-width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog-mark {
+    font-size: 40px;
+    color: gray;
+}
+
+.message-header {
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.confirm-modal{
+    padding: 10px 30px;
+    border-style: solid;
+    border-width: 0px;
+    background-color: gray;
+    color: white;
+    font-size: 11px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.confirm-modal:hover {
+    background-color: rgb(77, 77, 77);
+}
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .dialog-content {
+        min-width: 90%;
+    }
+}
+
+
+
+@media (max-width: 414px) {
+    .message-header {
+        font-size: 15px;
+    }
+}

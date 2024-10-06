@@ -236,7 +236,7 @@ const portfolioItems = [
                       <i className="bi bi-zoom-in"></i>
                     </a>
                     <a onClick={handleShopItem(item.title)} title="Shop now" className="details-link">
-                      <i className="cart-icon bi bi-cart-plus"></i>
+                      <i className="cart-icon bi bi-whatsapp"></i>
                     </a>
                   </div>
                 </div>

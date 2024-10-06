@@ -1,0 +1,721 @@
+/* ============================== ADDING ITEMS =========================================== */
+/* ============================== ADDING ITEMS =========================================== */
+/* ============================== ADDING ITEMS =========================================== */
+
+.add-items-container {
+    width: 90%;
+    padding: 20px;
+    background-color: #f9f9f991;
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(128, 128, 128, 0.315);
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+  
+  .add-items-container h1 {
+    margin-bottom: 50px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: underline;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 100;
+    font-size: 13px;
+  }
+  
+  .form-group input,
+  .category-input {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0 auto;
+    font-size: 12px;
+  }
+
+  .category-input {
+    padding: 8px;
+    font-size: 12px;
+    width: 95%;
+    background-color: rgba(255, 255, 255, 0.171);
+  }
+  
+  .add-to-list,
+  .delete-button,
+  .confirm-button {
+    padding: 12px 23px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #007bff;
+    cursor: pointer;
+    font-size: 11px;
+    margin-right: 10px;
+    margin-top: 8px;
+  }
+  
+  .add-to-list:hover {
+    background-color: #0056b3;
+  }
+  
+  .items-list {
+    margin-top: 20px;
+  }
+  
+  .item {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+  }
+
+  .item > h3 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .item > p {
+    margin-top: 0px;
+    margin-bottom: 7px;
+    font-size: 13px;
+  }
+  
+  .item img {
+    max-width: 120px;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .confirm-button {
+    width: 20%;
+    padding: 15px;
+    background-color: #28a745;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
+  .confirm-button.disable {
+    background-color: #8b978e;
+    cursor: not-allowed;
+  }
+
+  .confirm-button.disable:hover {
+    background-color: #8b978e;
+  }
+  
+  .confirm-button:hover {
+    background-color: #218838;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+/* ============================== DISPLAYING ITEMS =========================================== */
+/* ============================== DISPLAYING ITEMS =========================================== */
+/* ============================== DISPLAYING ITEMS =========================================== */
+
+/* Container for the product dashboard */
+.display-container {
+  width: 100%;
+  padding-top: 30px;
+  background-color: #f0f2f5;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  position: relative;
+}
+
+
+
+header {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+header h2 {
+  font-size: 20px;
+  margin-bottom: 40px;
+  color: #333333;
+  text-decoration: underline;
+}
+
+header p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Navigation buttons for category selection */
+.category-nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.category-nav button {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px 65px;
+  cursor: pointer;
+  font-size: 11px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-button {
+  background-color: #007bff00;
+  color: #363636;
+  border-color: #808080;
+  transform: translateY(-3px);
+}
+
+.nav-button.active {
+  background-color: #646464;
+  color: rgba(255, 255, 255, 0.904);
+}
+
+.nav-button:hover {
+  background-color: #64646480;
+  color: #fff;
+}
+
+
+
+
+
+
+.product-display {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+  padding: 30px;
+  background-color: #69696907;
+}
+
+.no-items {
+  width: 100%;
+  margin: 0;
+}
+
+.no-items > i {
+  font-size: 20px;
+  color: rgba(128, 128, 128, 0.637);
+}
+
+.product-card {
+  width: 200px;
+  background-color: #f9f9f9be;
+  background-color: #ececec;
+  border: 1px solid #cfcfcf;
+  border-radius: 0px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+}
+
+
+.product-card img {
+  width: 40%;
+  height: 110px;
+  height: auto;
+  object-fit: cover;
+  border-style:dashed;
+  border-width: 0px;
+  border-color: rgba(128, 128, 128, 0.226);
+  border-radius: 0px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+
+.product-name {
+  font-size: 17px;
+  text-decoration: underline;
+  margin: 10px 0;
+  color: #333;
+  text-align: left;
+  margin-left: 5px;
+}
+
+.product-card p {
+  font-size: 11px;
+  color: #555;
+  margin: 0;
+  text-align: left;
+  margin-top: 2px;
+  margin-left: 5px;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .category-nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .product-card {
+    padding: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================== UPDATING ITEMS =========================================== */
+/* ============================== UPDATING ITEMS =========================================== */
+/* ============================== UPDATING ITEMS =========================================== */
+
+
+.update-page {
+  opacity: 0;
+  pointer-events: none;
+  background-color: rgba(83, 83, 83, 0.699);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+.update-page.is-active {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.update-container {
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.update-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: black;
+}
+
+.passed-name {
+  font-size: 18px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: rgba(26, 26, 26, 0.692);
+  text-decoration: underline;
+}
+
+.update-container label {
+  display: block;
+  margin-bottom: 5px;
+  margin-left: 8px;
+  font-weight: 100;
+  font-size: 11px;
+  text-align: left;
+}
+
+.update-container input, 
+.category-update {
+  width: 98%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.category-update {
+  background-color: rgba(170, 170, 170, 0.11);
+  padding: 9px;
+}
+
+.update-container input[type="file"] {
+  padding: 7px;
+  font-size: 10px;
+}
+
+
+
+.update-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.update-button.disable {
+  background-color: #8b978e;
+  cursor: not-allowed;
+}
+
+.update-button.disable:hover {
+  background-color: #8b978e;
+}
+
+.update-button:hover {
+  background-color: #218838;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================== REMOVING ITEMS =========================================== */
+/* ============================== REMOVING ITEMS =========================================== */
+/* ============================== REMOVING ITEMS =========================================== */
+
+.delete-card:hover {
+  box-shadow: none;
+  transform: none;
+  cursor: auto;
+}
+
+
+.remove-item {
+  width: 100%;
+  cursor: pointer;
+  background-color: rgba(32, 39, 32, 0.671);
+  color: white;
+  border-style: solid;
+  border-width: 0px;
+  border-radius: 3px;
+  font-size: 10px;
+  padding: 8px;
+  margin-top: 5px;
+  transition: background-color 0.1s ease-in-out;
+}
+
+
+.remove-item:hover {
+  background-color: rgba(32, 39, 32, 0.801);
+}
+
+
+.remove-item.disable {
+  cursor: not-allowed;
+  background-color: rgba(32, 39, 32, 0.308);
+}
+
+.remove-item.disable:hover {
+  background-color: rgba(32, 39, 32, 0.308);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==================================================== RESPONSIVES ============================================= */
+/* ==================================================== RESPONSIVES ============================================= */
+/* ==================================================== RESPONSIVES ============================================= */
+/* ==================================================== RESPONSIVES ============================================= */
+/* ==================================================== RESPONSIVES ============================================= */
+/* ==================================================== RESPONSIVES ============================================= */
+/* ==================================================== RESPONSIVES ============================================= */
+/* ==================================================== RESPONSIVES ============================================= */
+/* ==================================================== RESPONSIVES ============================================= */
+
+@media (max-width: 767px) {
+  .confirm-button {
+    width: 100%;
+  }
+
+  .category-nav button {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .update-container {
+    width: 85%;
+  }
+}
