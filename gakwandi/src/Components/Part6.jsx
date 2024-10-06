@@ -120,7 +120,7 @@ function Part6() {
 
 
 
-const PortfolioDescription = ({ imageUrl }) => {
+const handleShopItem = ({ imageUrl }) => {
   const handleShopNow = () => {
     const phoneNumber = "+25771126865";
     const message = `How much is this sir? ${imageUrl}`;
@@ -129,9 +129,7 @@ const PortfolioDescription = ({ imageUrl }) => {
   };
 
   return (
-    <div>
-      <button onClick={handleShopNow}>Shop now</button>  {/* When rendered to string, onclick doesnt work cause component is rendered as a string */}
-    </div>
+    handleShopNow()
   );
 };
 
@@ -142,64 +140,56 @@ const portfolioItems = [
     title: "App 1",
     category: "filter-app",
     image: "assets/img/masonry-portfolio/masonry-portfolio-1.jpg",
-    gallery: "portfolio-gallery-app",
-    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" />)
+    gallery: "portfolio-gallery-app"
   },
   {
     title: "Product 1",
     category: "filter-product",
     image: "assets/img/masonry-portfolio/masonry-portfolio-2.jpg",
-    gallery: "portfolio-gallery-product",
-    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" />)
+    gallery: "portfolio-gallery-product"
+
   },
   {
     title: "Branding 1",
     category: "filter-branding",
     image: "assets/img/masonry-portfolio/masonry-portfolio-3.jpg",
-    gallery: "portfolio-gallery-branding",
-    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" />)
+    gallery: "portfolio-gallery-branding"
   },
   {
     title: "App 2",
     category: "filter-app",
     image: "assets/img/masonry-portfolio/masonry-portfolio-4.jpg",
-    gallery: "portfolio-gallery-app",
-    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" />)
+    gallery: "portfolio-gallery-app"
   },
   {
     title: "Product 2",
     category: "filter-product",
     image: "assets/img/masonry-portfolio/masonry-portfolio-5.jpg",
-    gallery: "portfolio-gallery-product",
-    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" />)
+    gallery: "portfolio-gallery-product"
   },
   {
     title: "Branding 2",
     category: "filter-branding",
     image: "assets/img/masonry-portfolio/masonry-portfolio-6.jpg",
-    gallery: "portfolio-gallery-branding",
-    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" />)
+    gallery: "portfolio-gallery-branding"
   },
   {
     title: "App 3",
     category: "filter-app",
     image: "assets/img/masonry-portfolio/masonry-portfolio-7.jpg",
-    gallery: "portfolio-gallery-app",
-    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" />)
+    gallery: "portfolio-gallery-app"
   },
   {
     title: "Product 3",
     category: "filter-product",
     image: "assets/img/masonry-portfolio/masonry-portfolio-8.jpg",
-    gallery: "portfolio-gallery-product",
-    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" />)
+    gallery: "portfolio-gallery-product"
   },
   {
     title: "Branding 3",
     category: "filter-branding",
     image: "assets/img/masonry-portfolio/masonry-portfolio-9.jpg",
-    gallery: "portfolio-gallery-branding",
-    description: renderToString(<PortfolioDescription imageUrl="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" />)
+    gallery: "portfolio-gallery-branding"
   }
 ];
 
@@ -248,8 +238,8 @@ const portfolioItems = [
                     <a href={item.image} title={item.title} data-gallery={item.gallery} data-description={item.description} className="glightbox preview-link">
                       <i className="bi bi-zoom-in"></i>
                     </a>
-                    <a href="portfolio-details.html" title="More Details" className="details-link">
-                      <i className="bi bi-link-45deg"></i>
+                    <a onClick={() => handleShopItem(item.image)} title="Shop now" className="details-link">
+                      <i className="cart-icon bi bi-cart-plus"></i>
                     </a>
                   </div>
                 </div>
