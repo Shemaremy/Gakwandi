@@ -124,9 +124,8 @@ const handleShopItem = (itemName) => {
   return () => {
     const phoneNumber = "+25771126865";
     const message = `How much is this sir?  "${itemName}"`;
-    alert(message);
-    //const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-    //window.open(whatsappUrl, '_blank');
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 };
 
