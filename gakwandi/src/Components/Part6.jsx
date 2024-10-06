@@ -120,18 +120,15 @@ function Part6() {
 
 
 
-const handleShopItem = ({ imageUrl }) => {
-  const handleShopNow = () => {
+const handleShopItem = (imageUrl) => {
+  return () => {
     const phoneNumber = "+25771126865";
     const message = `How much is this sir? ${imageUrl}`;
     const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
-
-  return (
-    handleShopNow()
-  );
 };
+
 
 
 
@@ -238,7 +235,7 @@ const portfolioItems = [
                     <a href={item.image} title={item.title} data-gallery={item.gallery} data-description={item.description} className="glightbox preview-link">
                       <i className="bi bi-zoom-in"></i>
                     </a>
-                    <a onClick={() => handleShopItem(item.image)} title="Shop now" className="details-link">
+                    <a onClick={handleShopItem(item.image)} title="Shop now" className="details-link">
                       <i className="cart-icon bi bi-cart-plus"></i>
                     </a>
                   </div>
