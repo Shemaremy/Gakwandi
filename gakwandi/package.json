@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@agney/react-loading": "^0.1.2",
     "@srexi/purecounterjs": "^1.5.0",
     "glightbox": "^3.3.0",
     "imagesloaded": "^5.0.0",

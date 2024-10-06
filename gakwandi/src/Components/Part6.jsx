@@ -6,6 +6,7 @@ import imagesLoaded from 'imagesloaded';
 import 'swiper/swiper-bundle.css';
 import GLightbox from 'glightbox';
 import 'glightbox/dist/css/glightbox.min.css';
+import { FetchProductsPreloader } from "./Preloader";
 import { renderToString } from 'react-dom/server';
 
 
@@ -51,7 +52,7 @@ function Part6() {
 // -------------- Portfolio products animations and filtering ---------------------------------------------------
 // -------------- Portfolio products animations and filtering ---------------------------------------------------
 
-
+/*
   useEffect(() => {
     document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
       let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
@@ -73,9 +74,9 @@ function Part6() {
           isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
           this.classList.add('filter-active');
           
-          //const selectedFilter = this.getAttribute('data-filter');
-          const selectedFilter = this.getAttribute('category-filter');
-          setActiveButton(selectedFilter);
+          const selectedFilter = this.getAttribute('data-filter');
+          //const selectedFilter = this.getAttribute('category-filter');
+          //setActiveButton(selectedFilter);
 
           initIsotope.arrange({
             filter: selectedFilter
@@ -84,6 +85,63 @@ function Part6() {
       });
     });
   }, [portfolioItems]);
+*/
+
+
+
+useEffect(() => {
+  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
+    let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
+    let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
+    let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
+
+    let initIsotope;
+    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
+      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
+        itemSelector: '.isotope-item',
+        layoutMode: layout,
+        filter: filter,
+        sortBy: sort
+      });
+    });
+
+    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
+      filters.addEventListener('click', function() {
+        isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
+        this.classList.add('filter-active');
+        
+        const selectedFilter = this.getAttribute('data-filter');
+        //const selectedFilter = this.getAttribute('category-filter');
+        //setActiveButton(selectedFilter);
+
+        initIsotope.arrange({
+          filter: selectedFilter
+        });
+      });
+    });
+  });
+
+  let initIsotope;
+  const isotopeLayout = document.querySelector('.isotope-layout');
+  
+  if (isotopeLayout) {
+    imagesLoaded(isotopeLayout.querySelector('.isotope-container'), function() {
+      if (!initIsotope) {
+        initIsotope = new Isotope(isotopeLayout.querySelector('.isotope-container'), {
+          itemSelector: '.isotope-item',
+          layoutMode: 'masonry',
+          filter: '*',
+        });
+      } else {
+        initIsotope.arrange();
+      }
+    });
+  }
+
+  return () => {
+    if (initIsotope) initIsotope.destroy();  // Clean up to avoid memory leaks
+  };
+}, [portfolioItems]);
 
 
   useEffect(() => {
@@ -245,7 +303,105 @@ useEffect(() => {
 
 
 
+const fetchAll = async () => {
+  setMainpreloader(true);
+  //alert("Fetching All")
+  try {
+    const response = await fetch(`https://gakwandi-project.glitch.me/api/admindisplay`);
+    const data = await response.json();
+    if (response.ok) {
+      console.log(data);
+      const formattedData = data.map(item => ({
+        title: item.name,
+        category: `filter-${item.category}`,
+        image: item.image,
+        gallery: `portfolio-gallery-${item.category.toLowerCase()}`
+      }));
+      setPortfolioItems(formattedData);
+    } else {
+      alert(`Failed to fetch from the store.`);
+    }
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  } finally {
+    setMainpreloader(false);
+  }
+};
 
+
+const fetchFurniture = async () => {
+  setMainpreloader(true);
+  //alert("Fetching Furniture")
+  try {
+    const response = await fetch(`https://gakwandi-project.glitch.me/api/admindisplay?category=Furniture`);
+    const data = await response.json();
+    if (response.ok) {
+      console.log(data);
+      const formattedData = data.map(item => ({
+        title: item.name,
+        category: `filter-${item.category}`,
+        image: item.image,
+        gallery: `portfolio-gallery-${item.category.toLowerCase()}`
+      }));
+      setPortfolioItems(formattedData);
+    } else {
+      alert(`Failed to fetch from the store.`);
+    }
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  } finally {
+    setMainpreloader(false);
+  }
+};
+
+
+const fetchElectronics = async () => {
+  setMainpreloader(true);
+  //alert("Fetching Electronics")
+  try {
+    const response = await fetch(`https://gakwandi-project.glitch.me/api/admindisplay?category=Electronics`);
+    const data = await response.json();
+    if (response.ok) {
+      console.log(data);
+      const formattedData = data.map(item => ({
+        title: item.name,
+        category: `filter-${item.category}`,
+        image: item.image,
+        gallery: `portfolio-gallery-${item.category.toLowerCase()}`
+      }));
+      setPortfolioItems(formattedData);
+    } else {
+      alert(`Failed to fetch from the store.`);
+    }
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  } finally {
+    setMainpreloader(false);
+  }
+};
+
+
+
+
+const itemsRenderer = (
+  <>
+    {portfolioItems.map((item, index) => (
+      <div key={index} className={`col-lg-4 col-md-6 portfolio-item isotope-item ${item.category}`}>
+        <img src={item.image} className="img-fluid" alt={item.title} />
+        <div className="portfolio-info">
+          <h4>{item.title}</h4>
+          <p>Lorem ipsum, dolor sit</p>
+          <a href={item.image} title={item.title} data-gallery={item.gallery} data-description={item.description} className="glightbox preview-link">
+            <i className="bi bi-zoom-in"></i>
+          </a>
+          <a onClick={handleShopItem(item.title)} title="Shop now" className="details-link">
+            <i className="cart-icon bi bi-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+    ))}
+  </>
+);
 
 
 
@@ -267,27 +423,13 @@ useEffect(() => {
         <div className="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
           <ul className="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" category-filter="*" className="filter-active">All</li>
-            <li data-filter=".filter-app" category-filter="Furniture">Furniture</li>
-            <li data-filter=".filter-product" category-filter="Electronics">Electronics</li>
+            <li data-filter="*" onClick={fetchAll} className="filter-active">All</li>
+            <li data-filter=".filter-app" onClick={fetchFurniture}>Furniture</li>
+            <li data-filter=".filter-product" onClick={fetchElectronics}>Electronics</li>
           </ul>
 
           <div className="items-container row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-            {portfolioItems.map((item, index) => (
-                <div key={index} className={`col-lg-4 col-md-6 portfolio-item isotope-item ${item.category}`}>
-                  <img src={item.image} className="img-fluid" alt={item.title} />
-                  <div className="portfolio-info">
-                    <h4>{item.title}</h4>
-                    <p>Lorem ipsum, dolor sit</p>
-                    <a href={item.image} title={item.title} data-gallery={item.gallery} data-description={item.description} className="glightbox preview-link">
-                      <i className="bi bi-zoom-in"></i>
-                    </a>
-                    <a onClick={handleShopItem(item.title)} title="Shop now" className="details-link">
-                      <i className="cart-icon bi bi-whatsapp"></i>
-                    </a>
-                  </div>
-                </div>
-              ))}
+            {mainpreloader ? <div className="load-div">Loading ...</div> : portfolioItems.length === 0 ? 'Not Found' : itemsRenderer}
           </div>
 
         </div>
