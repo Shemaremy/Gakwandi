@@ -1,6 +1,12 @@
+.header-comp {
+    margin-top: 0;
+}
+
+
 .hamburger_container {
     display: none;
 }
+
 
 .btn-getstarted {
     cursor: pointer;

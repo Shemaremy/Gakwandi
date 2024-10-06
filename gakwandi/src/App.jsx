@@ -33,7 +33,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={
         <div className="App">
-            <header id="header" className="header d-flex align-items-center fixed-top">
+            <header id="header" className="header header-comp d-flex align-items-center fixed-top">
               <Part1/>
             </header>
             <main className="main">
