@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import '../App.css';
 import './Mods.css';
 import Isotope from 'isotope-layout';
@@ -33,6 +33,9 @@ function initSwiperWithCustomPagination(swiperElement, config) {
 
 function Part6() {
 
+  const [mainpreloader, setMainpreloader] = useState(false);
+  const [activeButton, setActiveButton] = useState(''); 
+  const [portfolioItems, setPortfolioItems] = useState([]); 
 
 
 
@@ -69,13 +72,18 @@ function Part6() {
         filters.addEventListener('click', function() {
           isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
           this.classList.add('filter-active');
+          
+          //const selectedFilter = this.getAttribute('data-filter');
+          const selectedFilter = this.getAttribute('category-filter');
+          setActiveButton(selectedFilter);
+
           initIsotope.arrange({
-            filter: this.getAttribute('data-filter')
+            filter: selectedFilter
           });
         });
       });
     });
-  }, []);
+  }, [portfolioItems]);
 
 
   useEffect(() => {
@@ -111,7 +119,6 @@ function Part6() {
 
 
 
-
 // ---------------- Array of portfolio items -----------------------------------------------------------
 // ---------------- Array of portfolio items -----------------------------------------------------------
 // ---------------- Array of portfolio items ----------------------------------------------------------- 
@@ -131,7 +138,7 @@ const handleShopItem = (itemName) => {
 
 
 
-
+/*
 const portfolioItems = [
   {
     title: "App 1",
@@ -189,10 +196,51 @@ const portfolioItems = [
     gallery: "portfolio-gallery-branding"
   }
 ];
+*/
 
 
 
 
+
+
+
+
+
+
+
+
+// ------------------- FETCHING PRODUCTS FROM THE DATABASE -------------------------------------------------------
+// ------------------- FETCHING PRODUCTS FROM THE DATABASE -------------------------------------------------------
+// ------------------- FETCHING PRODUCTS FROM THE DATABASE -------------------------------------------------------
+
+
+
+useEffect(() => {
+  const fetchData = async () => {
+    setMainpreloader(true);
+    try {
+      const response = await fetch(`https://gakwandi-project.glitch.me/api/admindisplay?category=${activeButton}`);
+      const data = await response.json();
+      if (response.ok) {
+        console.log(data);
+        const formattedData = data.map(item => ({
+          title: item.name,
+          category: `filter-${item.category}`,
+          image: item.image,
+          gallery: `portfolio-gallery-${item.category.toLowerCase()}`
+        }));
+        setPortfolioItems(formattedData);
+      } else {
+        alert(`Failed to fetch from the store.`);
+      }
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    } finally {
+      setMainpreloader(false);
+    }
+  };
+  fetchData();
+}, [activeButton]);
 
 
 
@@ -219,13 +267,12 @@ const portfolioItems = [
         <div className="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
           <ul className="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" className="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-product">Card</li>
-            <li data-filter=".filter-branding">Web</li>
+            <li data-filter="*" category-filter="*" className="filter-active">All</li>
+            <li data-filter=".filter-app" category-filter="Furniture">Furniture</li>
+            <li data-filter=".filter-product" category-filter="Electronics">Electronics</li>
           </ul>
 
-          <div className="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+          <div className="items-container row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
             {portfolioItems.map((item, index) => (
                 <div key={index} className={`col-lg-4 col-md-6 portfolio-item isotope-item ${item.category}`}>
                   <img src={item.image} className="img-fluid" alt={item.title} />
