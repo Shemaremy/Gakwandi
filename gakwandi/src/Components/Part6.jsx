@@ -382,7 +382,6 @@ const fetchElectronics = async () => {
 
 
 
-
 const itemsRenderer = (
   <>
     {portfolioItems.map((item, index) => (
