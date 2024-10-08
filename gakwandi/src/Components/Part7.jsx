@@ -16,7 +16,6 @@ function Part7() {
         <div className="row gy-4 align-items-center justify-content-between">
 
           <div className="col-lg-5">
-            {/* <img src="assets/img/stats-img.jpg" alt="" className="img-fluid" /> */}
             <img src="assets/img/Happy-clients.jpg" alt="" className="img-fluid" />
           </div>
 
