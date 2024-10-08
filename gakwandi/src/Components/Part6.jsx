@@ -52,42 +52,6 @@ function Part6() {
 // -------------- Portfolio products animations and filtering ---------------------------------------------------
 // -------------- Portfolio products animations and filtering ---------------------------------------------------
 
-/*
-  useEffect(() => {
-    document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
-      let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
-      let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
-      let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
-
-      let initIsotope;
-      imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
-        initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-          itemSelector: '.isotope-item',
-          layoutMode: layout,
-          filter: filter,
-          sortBy: sort
-        });
-      });
-
-      isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-        filters.addEventListener('click', function() {
-          isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
-          this.classList.add('filter-active');
-          
-          const selectedFilter = this.getAttribute('data-filter');
-          //const selectedFilter = this.getAttribute('category-filter');
-          //setActiveButton(selectedFilter);
-
-          initIsotope.arrange({
-            filter: selectedFilter
-          });
-        });
-      });
-    });
-  }, [portfolioItems]);
-*/
-
-
 
 useEffect(() => {
   document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
@@ -164,12 +128,17 @@ useEffect(() => {
   }, []);
 
 
+
+
   useEffect(() => {
-    const glightbox = GLightbox({
+    const lightbox = GLightbox({
       selector: '.glightbox'
     });
-  }, []);
-
+  
+    return () => {
+      lightbox.destroy();
+    };
+  }, [portfolioItems]);
 
 
 
@@ -196,67 +165,6 @@ const handleShopItem = (itemName) => {
 
 
 
-/*
-const portfolioItems = [
-  {
-    title: "App 1",
-    category: "filter-app",
-    image: "assets/img/masonry-portfolio/masonry-portfolio-1.jpg",
-    gallery: "portfolio-gallery-app"
-  },
-  {
-    title: "Product 1",
-    category: "filter-product",
-    image: "assets/img/masonry-portfolio/masonry-portfolio-2.jpg",
-    gallery: "portfolio-gallery-product"
-
-  },
-  {
-    title: "Branding 1",
-    category: "filter-branding",
-    image: "assets/img/masonry-portfolio/masonry-portfolio-3.jpg",
-    gallery: "portfolio-gallery-branding"
-  },
-  {
-    title: "App 2",
-    category: "filter-app",
-    image: "assets/img/masonry-portfolio/masonry-portfolio-4.jpg",
-    gallery: "portfolio-gallery-app"
-  },
-  {
-    title: "Product 2",
-    category: "filter-product",
-    image: "assets/img/masonry-portfolio/masonry-portfolio-5.jpg",
-    gallery: "portfolio-gallery-product"
-  },
-  {
-    title: "Branding 2",
-    category: "filter-branding",
-    image: "assets/img/masonry-portfolio/masonry-portfolio-6.jpg",
-    gallery: "portfolio-gallery-branding"
-  },
-  {
-    title: "App 3",
-    category: "filter-app",
-    image: "assets/img/masonry-portfolio/masonry-portfolio-7.jpg",
-    gallery: "portfolio-gallery-app"
-  },
-  {
-    title: "Product 3",
-    category: "filter-product",
-    image: "assets/img/masonry-portfolio/masonry-portfolio-8.jpg",
-    gallery: "portfolio-gallery-product"
-  },
-  {
-    title: "Branding 3",
-    category: "filter-branding",
-    image: "assets/img/masonry-portfolio/masonry-portfolio-9.jpg",
-    gallery: "portfolio-gallery-branding"
-  }
-];
-*/
-
-
 
 
 
@@ -280,11 +188,12 @@ useEffect(() => {
       const response = await fetch(`https://gakwandi-project.glitch.me/api/admindisplay?category=${activeButton}`);
       const data = await response.json();
       if (response.ok) {
-        console.log(data);
+        console.log(data)
         const formattedData = data.map(item => ({
           title: item.name,
           category: `filter-${item.category}`,
           image: item.image,
+          quantity: item.quantity,
           gallery: `portfolio-gallery-${item.category.toLowerCase()}`
         }));
         setPortfolioItems(formattedData);
@@ -301,25 +210,27 @@ useEffect(() => {
 }, [activeButton]);
 
 
-
-
-const fetchAll = async () => {
+const fetchItems = async (category = '') => {
   setMainpreloader(true);
-  //alert("Fetching All")
   try {
-    const response = await fetch(`https://gakwandi-project.glitch.me/api/admindisplay`);
+    const url = category 
+      ? `https://gakwandi-project.glitch.me/api/admindisplay?category=${category}` 
+      : `https://gakwandi-project.glitch.me/api/admindisplay`;
+
+    const response = await fetch(url);
     const data = await response.json();
+    
     if (response.ok) {
-      console.log(data);
       const formattedData = data.map(item => ({
         title: item.name,
         category: `filter-${item.category}`,
         image: item.image,
+        quantity: item.quantity,
         gallery: `portfolio-gallery-${item.category.toLowerCase()}`
       }));
       setPortfolioItems(formattedData);
     } else {
-      alert(`Failed to fetch from the store.`);
+      alert('Failed to fetch from the store.');
     }
   } catch (error) {
     console.error('Error fetching products:', error);
@@ -328,79 +239,28 @@ const fetchAll = async () => {
   }
 };
 
-
-const fetchFurniture = async () => {
-  setMainpreloader(true);
-  //alert("Fetching Furniture")
-  try {
-    const response = await fetch(`https://gakwandi-project.glitch.me/api/admindisplay?category=Furniture`);
-    const data = await response.json();
-    if (response.ok) {
-      console.log(data);
-      const formattedData = data.map(item => ({
-        title: item.name,
-        category: `filter-${item.category}`,
-        image: item.image,
-        gallery: `portfolio-gallery-${item.category.toLowerCase()}`
-      }));
-      setPortfolioItems(formattedData);
-    } else {
-      alert(`Failed to fetch from the store.`);
-    }
-  } catch (error) {
-    console.error('Error fetching products:', error);
-  } finally {
-    setMainpreloader(false);
-  }
-};
-
-
-const fetchElectronics = async () => {
-  setMainpreloader(true);
-  //alert("Fetching Electronics")
-  try {
-    const response = await fetch(`https://gakwandi-project.glitch.me/api/admindisplay?category=Electronics`);
-    const data = await response.json();
-    if (response.ok) {
-      console.log(data);
-      const formattedData = data.map(item => ({
-        title: item.name,
-        category: `filter-${item.category}`,
-        image: item.image,
-        gallery: `portfolio-gallery-${item.category.toLowerCase()}`
-      }));
-      setPortfolioItems(formattedData);
-    } else {
-      alert(`Failed to fetch from the store.`);
-    }
-  } catch (error) {
-    console.error('Error fetching products:', error);
-  } finally {
-    setMainpreloader(false);
-  }
-};
 
 
 
 const itemsRenderer = (
   <>
-    {portfolioItems.map((item, index) => (
-      <div key={index} className={`col-lg-4 col-md-6 portfolio-item isotope-item ${item.category}`}>
-        <img src={item.image} className="img-fluid" alt={item.title} />
-        <div className="portfolio-info">
-          <h4>{item.title}</h4>
-          <p>Lorem ipsum, dolor sit</p>
-          <a href={item.image} title={item.title} data-gallery={item.gallery} data-description={item.description} className="glightbox preview-link">
-            <i className="bi bi-zoom-in"></i>
-          </a>
-          <a onClick={handleShopItem(item.title)} title="Shop now" className="details-link">
-            <i className="cart-icon bi bi-whatsapp"></i>
-          </a>
+    {portfolioItems.map((item, index) => {
+      return (
+        <div key={index} className={`col-lg-4 col-md-6 portfolio-item isotope-item ${item.category}`}>
+          <img src={item.image} className="img-fluid" alt={item.title} />
+          <div className="portfolio-info">
+            <h4>{item.title}</h4>
+            <p>Available quantity: {item.quantity}</p>
+            <a onClick={handleShopItem(item.title)} title="Shop now" className="details-link">
+              <i className="cart-icon bi bi-whatsapp"></i>
+            </a>
+          </div>
         </div>
-      </div>
-    ))}
+      );
+    })}
   </>
 );
+
 
 
 
@@ -422,9 +282,9 @@ const itemsRenderer = (
         <div className="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
           <ul className="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" onClick={fetchAll} className="filter-active">All</li>
-            <li data-filter=".filter-app" onClick={fetchFurniture}>Furniture</li>
-            <li data-filter=".filter-product" onClick={fetchElectronics}>Electronics</li>
+            <li data-filter="*" onClick={() => fetchItems()} className="filter-active">All</li>
+            <li data-filter=".filter-app" onClick={() => fetchItems('Furniture')}>Furniture</li>
+            <li data-filter=".filter-product" onClick={() => fetchItems('Electronics')}>Electronics</li>
           </ul>
 
           <div className="items-container row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
