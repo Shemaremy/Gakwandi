@@ -6,7 +6,10 @@ function Part2() {
   return (
     // Hero Section
     <section id="hero" className="hero section dark-background">
-      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in" />
+      {/* <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in" /> */}
+      {/* <img className="landing-img" src="assets/img/Landing/Furniture-landing.jpg" alt="" data-aos="fade-in" /> */}
+      <img className="landing-img" src="assets/img/Landing/Furniture-landing2.jpg" alt="" data-aos="fade-in" />
+      {/* <img className="landing-img" src="assets/img/Landing/Mountains.jpg" alt="" data-aos="fade-in" /> */}
 
       <div className="container">
         <div className="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
