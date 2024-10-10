@@ -274,6 +274,7 @@ body {
 
   input[type="password" i] {
     font-size: 15px;
+    color: red;
   }
 }
 
