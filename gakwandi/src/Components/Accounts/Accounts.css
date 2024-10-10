@@ -273,8 +273,7 @@ body {
   }
 
   input[type="password" i] {
-    font-size: 5px;
-    color: rgb(119, 0, 255);
+    font-size: 13px;
   }
 }
 
