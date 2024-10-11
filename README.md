@@ -2,5 +2,5 @@
 Gakwandi Bss website with MERN
 
 
-- Products section
-- Language issue
+- Handle remain language on refresh
+- Detect defaultsystem language

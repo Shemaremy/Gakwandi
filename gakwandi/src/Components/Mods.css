@@ -217,11 +217,34 @@
     .Mobile-panel.is-active {
         display: block;
     } 
+
+    .remove-on-phone {
+        display: none;
+    }
+
+    .display-on-phone {
+        position: relative;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .lang-switch-dropdown select {
+        width: 130px;
+        padding: 10px;
+        color: black;
+        border-color: rgba(0, 0, 0, 0.527);
+    }
 }
 
 
 @media (max-width: 414px) {
     .scan-to-explore {
         font-size: 13px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .display-on-phone {
+        display: none;
     }
 }

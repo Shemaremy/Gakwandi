@@ -72,7 +72,17 @@ function Part1() {
 
 
 
-  const [language, setLanguage] = useState('EN');
+  // Detecting browser language and setting it as default
+  useEffect(() => {
+    const browserLanguage = navigator.language || navigator.userLanguage;
+    const languageCode = browserLanguage.split('-')[0]; // For 'en-US', this would return 'en'
+    i18n.changeLanguage(languageCode);
+    setLanguage(languageCode.toUpperCase()); // Update the language state accordingly
+  }, [i18n]);
+
+
+
+  const [language, setLanguage] = useState('');
 
   const handleLanguageChange = (e) => {
     const selectedLanguage = e.target.value;
@@ -99,6 +109,12 @@ function Part1() {
           <li><a href="#portfolio">{t('portfolio')}</a></li>
           <li><a href="#services">{t('services')}</a></li>
           <li><a href="#contact">{t('contact')}</a></li>
+          <div className="lang-switch-dropdown display-on-phone">
+            <select value={language} onChange={handleLanguageChange}>
+              <option value="EN">English</option>
+              <option value="FR">Français</option>
+            </select>
+          </div>
         </ul>
         <div className="hamburger_container">
             <button className="hamburger" onClick={toggleMobileMenu}>
@@ -109,12 +125,12 @@ function Part1() {
       </nav>
 
       <a className="btn-getstarted" onClick={goToAdmin}>Admin</a>
-      <div className="lang-switch-dropdown">
-      <select value={language} onChange={handleLanguageChange}>
-        <option value="EN">En</option>
-        <option value="FR">Fr</option>
-      </select>
-    </div>
+      <div className="lang-switch-dropdown remove-on-phone">
+        <select value={language} onChange={handleLanguageChange}>
+          <option value="EN">En</option>
+          <option value="FR">Fr</option>
+        </select>
+      </div>
     </div>
   );
 }

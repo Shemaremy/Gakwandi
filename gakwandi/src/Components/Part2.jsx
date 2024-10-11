@@ -4,7 +4,7 @@ import '../App.css';
 import './Mods.css';
 
 function Part2() {
-  const { t } = useTranslation(); // Use the translation hook
+  const { t } = useTranslation();
 
   return (
     <section id="hero" className="hero section dark-background">
