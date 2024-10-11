@@ -1,15 +1,16 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import '../App.css';
 import './Mods.css';
 
 function Part4() {
+  const { t } = useTranslation(); // Use the translation hook
+
   return (
-    // Services Section
     <section id="services" className="services section">
-      {/* Section Title */}
       <div className="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-        <p>Our Services</p>
+        <h2>{t('services_title')}</h2>
+        <p>{t('services_subtitle')}</p>
       </div>
 
       <div className="container">
@@ -20,9 +21,9 @@ function Part4() {
                 <i className="fa-solid fa-person"></i>
               </div>
               <a href="service-details.html" className="stretched-link">
-                <h3>Retail Selling</h3>
+                <h3>{t('service_retail')}</h3>
               </a>
-              <p>We offer a wide range of high-quality furniture and electronic devices tailored to meet the needs of everyday customers.</p>
+              <p>{t('service_retail_desc')}</p>
             </div>
           </div>
 
@@ -32,9 +33,9 @@ function Part4() {
                 <i className="bi bi-broadcast"></i>
               </div>
               <a href="service-details.html" className="stretched-link">
-                <h3>Wholesale to Businesses</h3>
+                <h3>{t('service_wholesale')}</h3>
               </a>
-              <p>Partner with us for competitive bulk pricing on furniture and electronics, designed to elevate your business with quality products.</p>
+              <p>{t('service_wholesale_desc')}</p>
             </div>
           </div>
 
@@ -44,9 +45,9 @@ function Part4() {
                 <i className="fa-solid fa-truck"></i>
               </div>
               <a href="service-details.html" className="stretched-link">
-                <h3>Reliable Delivery Service</h3>
+                <h3>{t('service_delivery')}</h3>
               </a>
-              <p>Our efficient delivery service ensures your items arrive safely and on time, whether you're buying for home or business.</p>
+              <p>{t('service_delivery_desc')}</p>
             </div>
           </div>
 
@@ -56,9 +57,9 @@ function Part4() {
                 <i className="bi bi-bounding-box-circles"></i>
               </div>
               <a href="service-details.html" className="stretched-link">
-                <h3>Free Assembly & Installation</h3>
+                <h3>{t('service_assembly')}</h3>
               </a>
-              <p>Enjoy hassle-free shopping with our complimentary product assembly and installation service, available on all purchases.</p>
+              <p>{t('service_assembly_desc')}</p>
             </div>
           </div>
 
@@ -68,9 +69,9 @@ function Part4() {
                 <i className="fa-regular fa-comments"></i>
               </div>
               <a href="service-details.html" className="stretched-link">
-                <h3>Expert Product Consultation</h3>
+                <h3>{t('service_consultation')}</h3>
               </a>
-              <p>Our knowledgeable team is here to guide you through choosing the best products to suit your needs, whether at home or work.</p>
+              <p>{t('service_consultation_desc')}</p>
             </div>
           </div>
 
@@ -80,9 +81,9 @@ function Part4() {
                 <i className="bi bi-calendar4-week"></i>
               </div>
               <a href="service-details.html" className="stretched-link">
-                <h3>Flexible Payment Plans</h3>
+                <h3>{t('service_payment')}</h3>
               </a>
-              <p>We offer flexible payment options to make purchasing large items more convenient and accessible for everyone.</p>
+              <p>{t('service_payment_desc')}</p>
             </div>
           </div>
         </div>

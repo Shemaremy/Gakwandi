@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import '../App.css';
 import './Mods.css';
+import { useTranslation } from 'react-i18next'; 
 import Isotope from 'isotope-layout';
 import imagesLoaded from 'imagesloaded';
 import 'swiper/swiper-bundle.css';
@@ -33,6 +34,8 @@ function initSwiperWithCustomPagination(swiperElement, config) {
 
 
 function Part6() {
+
+  const { t } = useTranslation();
 
   const [mainpreloader, setMainpreloader] = useState(false);
   const [activeButton, setActiveButton] = useState(''); 
@@ -249,8 +252,8 @@ const itemsRenderer = (
           <img src={item.image} className="img-fluid" alt={item.title} />
           <div className="portfolio-info">
             <h4>{item.title}</h4>
-            <p>Available quantity: {item.quantity}</p>
-            <a onClick={handleShopItem(item.title)} title="Shop now" className="details-link">
+            <p>{t('available_quantity')}: {item.quantity}</p>
+            <a onClick={handleShopItem(item.title)} title={t('shop_now')} className="details-link">
               <i className="cart-icon bi bi-whatsapp"></i>
             </a>
           </div>
@@ -272,8 +275,8 @@ const itemsRenderer = (
   return (
     <section id="portfolio" className="portfolio section">
       <div className="container section-title" data-aos="fade-up">
-        <h2>Portfolio</h2>
-        <p>Our Products</p>
+      <h2>{t('portfolio_p')}</h2>
+      <p>{t('our_products')}</p>
       </div>
 
       <div className="container">
@@ -281,9 +284,9 @@ const itemsRenderer = (
         <div className="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
           <ul className="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" onClick={() => fetchItems()} className="filter-active">All</li>
-            <li data-filter=".filter-app" onClick={() => fetchItems('Furniture')}>Furniture</li>
-            <li data-filter=".filter-product" onClick={() => fetchItems('Electronics')}>Electronics</li>
+            <li data-filter="*" onClick={() => fetchItems()} className="filter-active">{t('all')}</li>
+            <li data-filter=".filter-app" onClick={() => fetchItems('Furniture')}>{t('furniture')}</li>
+            <li data-filter=".filter-product" onClick={() => fetchItems('Electronics')}>{t('electronics')}</li>
           </ul>
 
           <div className="items-container row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
