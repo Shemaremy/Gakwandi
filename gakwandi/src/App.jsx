@@ -1,4 +1,5 @@
 import React from 'react'
+import './i18n';
 import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import './App.css'
 import Part1 from './Components/Part1'

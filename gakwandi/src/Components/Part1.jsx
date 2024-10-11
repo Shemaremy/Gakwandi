@@ -1,12 +1,13 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import './Mods.css';
-//import '../../public/assets/js/main.js'
 
 function Part1() {
 
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   
   const goToAdmin = () => {
     navigate('/admin');
@@ -71,6 +72,19 @@ function Part1() {
 
 
 
+  const [language, setLanguage] = useState('EN');
+
+  const handleLanguageChange = (e) => {
+    const selectedLanguage = e.target.value;
+    setLanguage(selectedLanguage);
+    i18n.changeLanguage(selectedLanguage.toLowerCase());
+  };
+
+
+
+
+
+
   return (
     <div className="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
       <a href="index.html" className="logo d-flex align-items-center me-auto me-lg-0">
@@ -80,32 +94,12 @@ function Part1() {
 
       <nav id="navmenu" className="navmenu">
         <ul className="Mobile-panel">
-          <li><a href="#hero" className="active">Home<br /></a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          {/* <li className="dropdown">
-            <a href="#"><span>Dropdown</span> <i className="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li className="dropdown">
-                <a href="#"><span>Deep Dropdown</span> <i className="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li> */}
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#hero" className="active">{t('home')}<br /></a></li>
+          <li><a href="#about">{t('about')}</a></li>
+          <li><a href="#portfolio">{t('portfolio')}</a></li>
+          <li><a href="#services">{t('services')}</a></li>
+          <li><a href="#contact">{t('contact')}</a></li>
         </ul>
-        {/* <i className="mobile-nav-toggle d-xl-none bi bi-list"></i> */}
         <div className="hamburger_container">
             <button className="hamburger" onClick={toggleMobileMenu}>
                 <div className="bar"></div>
@@ -115,6 +109,12 @@ function Part1() {
       </nav>
 
       <a className="btn-getstarted" onClick={goToAdmin}>Admin</a>
+      <div className="lang-switch-dropdown">
+      <select value={language} onChange={handleLanguageChange}>
+        <option value="EN">En</option>
+        <option value="FR">Fr</option>
+      </select>
+    </div>
     </div>
   );
 }

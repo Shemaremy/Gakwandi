@@ -4,6 +4,50 @@
     align-items: center;
 }
 
+
+/* LanguageSwitcher.css */
+.lang-switch-dropdown {
+    height: 60px;
+    margin-right: 130px;
+    right: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+}
+
+.lang-switch-button {
+    padding: 10px 20px;
+    border-color: #b8b8b8;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .lang-switch-button:hover {
+    border-color: #b8b8b8;
+  }
+  
+  .lang-switch-dropdown select {
+    padding: 6px;
+    background-color: #f1f1f100;
+    border: 1px solid #ccc;
+    color: rgb(29, 252, 0);
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  
+  .lang-switch-dropdown select:focus {
+    outline: none;
+    border-color: #b8b8b8;
+  }
+
+
+
+
 .header-comp {
     margin-top: 0;
 }

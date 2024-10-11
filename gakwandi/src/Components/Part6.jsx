@@ -188,7 +188,6 @@ useEffect(() => {
       const response = await fetch(`https://gakwandi-project.glitch.me/api/admindisplay?category=${activeButton}`);
       const data = await response.json();
       if (response.ok) {
-        console.log(data)
         const formattedData = data.map(item => ({
           title: item.name,
           category: `filter-${item.category}`,
