@@ -274,7 +274,7 @@ const itemsRenderer = (
     <section id="portfolio" className="portfolio section">
       <div className="container section-title" data-aos="fade-up">
         <h2>Portfolio</h2>
-        <p>Check our Portfolio</p>
+        <p>Our Products</p>
       </div>
 
       <div className="container">
