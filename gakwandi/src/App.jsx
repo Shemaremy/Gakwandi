@@ -39,10 +39,10 @@ function AppRoutes() {
             </header>
             <main className="main">
               <Part2/>
-              <Part3/>
               <Part6/>
               <Part4/>
               <Part5/>
+              <Part3/>
               <Part7/>
               <Part8/>
             </main>
