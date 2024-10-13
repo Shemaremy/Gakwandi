@@ -39,7 +39,7 @@ function Part6() {
 
   const [mainpreloader, setMainpreloader] = useState(false);
   const [activeButton, setActiveButton] = useState(''); 
-  const [portfolioItems, setPortfolioItems] = useState([]); 
+  const [portfolioItems, setPortfolioItems] = useState([]);
 
 
 
@@ -196,7 +196,8 @@ useEffect(() => {
           category: `filter-${item.category}`,
           image: item.image,
           quantity: item.quantity,
-          gallery: `portfolio-gallery-${item.category.toLowerCase()}`
+          gallery: `portfolio-gallery-${item.category.toLowerCase()}`,
+          available: item.quantity > 0 ? 'Available' : 'Unavailable!'
         }));
         setPortfolioItems(formattedData);
       } else {
@@ -228,8 +229,8 @@ const fetchItems = async (category = '') => {
         category: `filter-${item.category}`,
         image: item.image,
         quantity: item.quantity,
-        gallery: `portfolio-gallery-${item.category.toLowerCase()}`
-      }));
+        gallery: `portfolio-gallery-${item.category.toLowerCase()}`,
+        available: item.quantity > 0 ? 'Available' : 'Unavailable!'      }));
       setPortfolioItems(formattedData);
     } else {
       alert('Failed to fetch from the store.');
@@ -243,7 +244,6 @@ const fetchItems = async (category = '') => {
 
 
 
-
 const itemsRenderer = (
   <>
     {portfolioItems.map((item, index) => {
@@ -252,7 +252,7 @@ const itemsRenderer = (
           <img src={item.image} className="img-fluid" alt={item.title} />
           <div className="portfolio-info">
             <h4>{item.title}</h4>
-            <p>{t('available_quantity')}: {item.quantity}</p>
+            <p className={item.available === 'Available' ? 'available' : 'unavailable'}>{item.available}</p>
             <a onClick={handleShopItem(item.title)} title={t('shop_now')} className="details-link">
               <i className="cart-icon bi bi-whatsapp"></i>
             </a>

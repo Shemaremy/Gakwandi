@@ -134,6 +134,15 @@
     cursor: pointer;
 }
 
+.available {
+    color: rgb(77, 165, 92) !important;
+    text-decoration: underline;
+}
+
+.unavailable {
+    color: rgb(255, 79, 79) !important;
+}
+
 .cart-icon {
     font-size: 20px;
 }
