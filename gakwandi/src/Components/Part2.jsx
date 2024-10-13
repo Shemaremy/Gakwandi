@@ -8,7 +8,8 @@ function Part2() {
 
   return (
     <section id="hero" className="hero section dark-background">
-      <img className="landing-img" src="assets/img/Landing/Furniture-landing2.jpg" alt="" data-aos="fade-in" />
+      <img className="landing-img desktop-land" src="assets/img/Landing/Furniture-landing3.jpg" alt="" data-aos="fade-in" />
+      <img className="landing-img phone-land" src="assets/img/Landing/Furniture-landing4.jpg" alt="" data-aos="fade-in" />
 
       <div className="container">
         <div className="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">

@@ -241,7 +241,26 @@
     .scan-to-explore {
         font-size: 13px;
     }
+
+    .desktop-land {
+        display: none !important;
+    }
+
+    .phone-land {
+        display: block !important;
+    }
 }
+
+@media (min-width: 415px) {
+    .desktop-land {
+        display: block !important;
+    }
+
+    .phone-land {
+        display: none !important;
+    }
+}
+
 
 @media (min-width: 1200px) {
     .display-on-phone {
